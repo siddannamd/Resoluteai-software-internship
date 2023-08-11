@@ -2,13 +2,13 @@ import face_recognition
 import os
 import cv2
 
-KNOWN_FACES_DIR = 'known_faces'
+KNOWN_FACES_DIR = r'C:\Users\sidda\Desktop\KNOWN_FACES'
 TOLERANCE = 0.5 #The lower the tolerance, the more "strict" the labels will be
 FRAME_THICKNESS = 3
 FONT_THICKNESS = 2
 MODEL = 'hog'  #'hog', other one can be 'cnn' 
 
-video=cv2.VideoCapture("test.mp4") # Also can put a video Name
+video=cv2.VideoCapture(0) # Also can put a video Name
 #video=cv2.VideoCapture() # Also can put a video Name
 
 print('Loading known faces...')
