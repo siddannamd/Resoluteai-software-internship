@@ -2,11 +2,11 @@ import face_recognition
 import os
 import cv2
 
-KNOWN_FACES_DIR = r'C:\Users\sidda\Desktop\KNOWN_FACES'
+KNOWN_FACES_DIR = r"C:\Users\sidda\Desktop\Resolute AI\Face recognize\known_faces"
 TOLERANCE = 0.5 #The lower the tolerance, the more "strict" the labels will be
 FRAME_THICKNESS = 3
 FONT_THICKNESS = 2
-MODEL = 'hog'  #'hog', other one can be 'cnn' 
+MODEL = 'hog'  #'hog', other one can be 'cnn'
 
 video=cv2.VideoCapture(0) # Also can put a video Name
 #video=cv2.VideoCapture() # Also can put a video Name
@@ -24,7 +24,7 @@ for name in os.listdir(KNOWN_FACES_DIR):
         known_faces.append(encoding)
         known_names.append(name)
 
-# !!! Caution : Uncomment this only if you want to go for ID numbers 
+# !!! Caution : Uncomment this only if you want to go for ID numbers
 # if len (known_names)>0:
 #     next_id=max =(known_names)+1
 # else :
@@ -38,19 +38,19 @@ while True:
     ret, image = video.read()
     if not ret:
         break
-    
+
     counter += 1
     if counter % skip_frames != 0:
         continue
 
     # Resize the frame to a smaller size for faster processing
     # image = cv2.resize(image, (640, int(image.shape[0] * 640 / image.shape[1])))
-    # we can do in this way also resize 
+    # we can do in this way also resize
     image = cv2.resize(image, (1280, 720))
 
     locations = face_recognition.face_locations(image, model=MODEL)
     encodings = face_recognition.face_encodings(image, locations)
-    
+
     for face_encoding, face_location in zip(encodings, locations):
 
         # We use compare_faces (but might use face_distance as well)
@@ -85,7 +85,7 @@ while True:
         bottom_right = (face_location[1], face_location[2] + 22)
         cv2.rectangle(image, top_left, bottom_right, color, cv2.FILLED)
         cv2.putText(image, match, (face_location[3]+10, face_location[2]+15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), FONT_THICKNESS)
-    
+
     cv2.imshow("Frame", image)
     if cv2.waitKey(1) & 0xFF==ord("q"):
         break
