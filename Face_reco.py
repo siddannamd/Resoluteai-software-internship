@@ -9,7 +9,7 @@ FONT_THICKNESS = 2
 MODEL = 'hog'  #'hog', other one can be 'cnn'
 
 video=cv2.VideoCapture(0) # Also can put a video Name
-#video=cv2.VideoCapture() # Also can put a video Name
+#video=cv2.VideoCapture() # Also can put a video Name-1
 
 print('Loading known faces...')
 known_faces = []
